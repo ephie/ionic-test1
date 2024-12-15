@@ -3,6 +3,8 @@ import { provideRouter } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
+import { Component } from '@angular/core';
+
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
