@@ -8,7 +8,7 @@ How to set up ssh authentification on github
 https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
 
 
-**Open Gitbash:
+**Open Gitbash as admin (the output file will be generated in /c/Users/Ephraim GOLDSCHMIDT/.ssh/...):
 ssh-keygen -t ed25519 -C "ephraim.goldschmidt@gmail.com"
 
 Press enter when asked what file to save in
