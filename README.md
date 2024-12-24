@@ -40,7 +40,7 @@ In a terminal (copy the public key to the clipboard)
 ```cd c:/Users/Ephraim/```
 ```clip < .ssh/id_ed25519.pub```
 
-in GitHub Settings>Access zone> SSH and GPG keys 
+in GitHub Settings>Access menu group on the left> SSH and GPG keys 
 Click New SSH key, set a title, use Authentication key option and paste the public ssh key
 
 
