@@ -9,7 +9,7 @@ https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generati
 
 
 **Open Gitbash as admin (the output file will be generated in /c/Users/Ephraim GOLDSCHMIDT/.ssh/...):
-~~~ssh-keygen -t ed25519 -C "ephraim.goldschmidt@gmail.com"~~~
+```ssh-keygen -t ed25519 -C "ephraim.goldschmidt@gmail.com"```
 
 Press enter when asked what file to save in
 
@@ -17,10 +17,10 @@ Set an optional paraphrase. I left no passphrase
 
 
 **Open PowerShell As Administrator (To start the ssh agent)
-~~~Get-Service -Name ssh-agent | Set-Service -StartupType Manual~~~
+```Get-Service -Name ssh-agent | Set-Service -StartupType Manual```
 
 then:
-~~~Start-Service ssh-agent~~~
+```Start-Service ssh-agent```
 
 **Open Terminal as NON administrator (to add the ssh key)
 
