@@ -17,23 +17,45 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ionic-angular-web-ios-android-sidemenu-test
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: ionic-angular-web-ios-android-sidemenu-test/package-lock.json
-      - run: npm ci
-      - run: npx ng build --base-href /${{ github.event.repository.name }}/
-      # Pages serves 404.html for unknown paths, enabling client-side routing
-      - run: cp www/index.html www/404.html
+          cache-dependency-path: |
+            ionic-angular-web-ios-android-sidemenu-test/package-lock.json
+            ionic-angular-web-tabs-test/ionics-angular-web-tabs-test/package-lock.json
+
+      - name: Build sidemenu app (site root)
+        working-directory: ionic-angular-web-ios-android-sidemenu-test
+        run: |
+          npm ci
+          npx ng build --base-href /${{ github.event.repository.name }}/
+
+      - name: Build tabs app (/tabs/)
+        working-directory: ionic-angular-web-tabs-test/ionics-angular-web-tabs-test
+        run: |
+          npm ci
+          npx ng build --base-href /${{ github.event.repository.name }}/tabs/
+
+      - name: Assemble site
+        run: |
+          mkdir site
+          cp -r ionic-angular-web-ios-android-sidemenu-test/www/. site/
+          mkdir site/tabs
+          cp -r ionic-angular-web-tabs-test/ionics-angular-web-tabs-test/www/. site/tabs/
+          # Pages serves 404.html for unknown paths, enabling client-side routing
+          cp site/index.html site/404.html
+          # Tabs deep links need their own index.html since 404.html belongs to the root app
+          for t in tab1 tab2 tab3; do
+            mkdir -p site/tabs/tabs/$t
+            cp site/tabs/index.html site/tabs/tabs/$t/index.html
+          done
+
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ionic-angular-web-ios-android-sidemenu-test/www
+          path: site
 
   deploy:
     needs: build
