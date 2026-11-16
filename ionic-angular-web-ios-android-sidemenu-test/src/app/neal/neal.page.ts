@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -14,11 +14,8 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonBadge, IonIc
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonButton, IonBadge, IonIcon, IonList, IonItem, IonLabel, IonButtons, IonMenuButton]
 })
-export class NealPage implements OnInit {
+export class NealPage {
   private activatedRoute = inject(ActivatedRoute);
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }
